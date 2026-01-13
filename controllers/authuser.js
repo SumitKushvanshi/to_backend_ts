@@ -3,6 +3,9 @@ import { db } from '../config/sqldb.js'
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken'
 import sql from "mssql";
+import { execute } from './wrapSql.js';
+import type from '../healper/queryType.js';
+
 
 
 
@@ -105,7 +108,7 @@ export const login = async (req, res) => {
             success: true,
             token,
             email,
-            
+
         })
 
 
@@ -145,19 +148,19 @@ export const logoutUser = async (req, res) => {
 }
 
 
-export const getUserDetail=async(req,res)=>{
+export const getUserDetail = async (req, res) => {
     try {
 
-        const user=await db.query` SELECT TOP(1) * FROM registerUser WHERE email = ${email}`
-        
+        const user = await db.query` SELECT TOP(1) * FROM registerUser WHERE email = ${email}`
+
     } catch (error) {
 
         return res.status(500).json({
-            message:"Serevr side error",
-            success:false,
+            message: "Serevr side error",
+            success: false,
             error
         })
-        
+
     }
 }
 
@@ -182,4 +185,28 @@ export const middelWare = (req, res, next) => {
     }
 
 
+}
+
+
+const query = 'SELECT  * FROM registerUser  '
+// const columnType = ['email']
+
+export const getData = async (req, res) => {
+  try {
+     const data= await execute(query, [], type.SELECT_MULTI)
+
+   res.send({
+    message:"Sab kuch sahi h",
+    success:true,
+    data
+   })
+
+  } catch (error) {
+    res.status(500).json({
+        message:"Server side error",
+        success:false,
+        
+    })
+    
+  }
 }

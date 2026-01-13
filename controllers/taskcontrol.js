@@ -120,8 +120,8 @@ export const deleteData = async (req, res) => {
 export const searchApi = async (req, res) => {
 
     const data = req.query.data;
-   
-  
+
+
     try {
 
         const result = await db

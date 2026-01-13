@@ -1,6 +1,6 @@
 import express from 'express'
  const routes=express.Router()
-import {login, logoutUser, register} from '../controllers/authuser.js'
+import {getData, login, logoutUser, register} from '../controllers/authuser.js'
 import { addTask ,deleteData,listTask,searchApi,updateData} from '../controllers/taskcontrol.js'
 import { middelWare } from '../controllers/authuser.js'
 
@@ -13,7 +13,7 @@ routes.get('/listTask',middelWare,listTask)
 routes.put('/delete/:id',deleteData)
 routes.post('/logout',logoutUser)
 routes.get('/search',searchApi)
-
+routes.get('/load',getData)
 
 export default routes
 

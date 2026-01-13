@@ -20,6 +20,7 @@
     "mongoose": "^9.0.2",
     "mssql": "^12.2.0",
     "mysql2": "^3.16.0",
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "sqlstring": "^2.3.3"
   }
 }
